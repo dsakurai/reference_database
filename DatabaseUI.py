@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6 import QtCore, QtWidgets
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QLabel, QFrame, QPushButton
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel, QFrame, QPushButton, QMainWindow
 from PyQt6.QtWidgets import QSizePolicy
 from PyQt6.QtCore import QMimeDatabase, QMimeType, QSize
 from pathlib import Path
@@ -40,8 +40,8 @@ class DropArea(QFrame):
             self.parent().set_document(file_path)
 
 class DbApp(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent = None):
+        super().__init__(parent)
         self.setAcceptDrops(True)  # to accept drop events
         self.init_ui()
         self.document_path = None
@@ -51,9 +51,6 @@ class DbApp(QWidget):
 
         self.title_edit = QLineEdit()
         self.authors_edit = QLineEdit()
-
-        from WebView import WebView
-        layout.addWidget(WebView(self))
 
         layout.addWidget(QLabel("authors", self))
         layout.addWidget(self.authors_edit)
@@ -91,10 +88,32 @@ class DbApp(QWidget):
         self.authors_edit.setText(None)
         self.document_path = None
 
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.init_ui()
+        self.document_path = None
+
+    def init_ui(self):
+
+        centralWidget = QFrame(self)
+
+        layout = QHBoxLayout()
+        centralWidget.setLayout(layout)
+
+        from WebView import WebView
+        layout.addWidget(WebView(self))
+
+        layout.addWidget(DbApp(self))
+
+        self.setCentralWidget(centralWidget)
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
 
-    window = DbApp()
+    window = MainWindow()
     window.show()
 
     sys.exit(app.exec())
