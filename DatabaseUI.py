@@ -1,7 +1,9 @@
 import sys
+from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QLabel, QFrame, QPushButton
-from PyQt6.QtCore import QMimeDatabase, QMimeType
+from PyQt6.QtWidgets import QSizePolicy
+from PyQt6.QtCore import QMimeDatabase, QMimeType, QSize
 from pathlib import Path
 import database
 
@@ -21,6 +23,7 @@ class DropArea(QFrame):
         self.setFrameShadow(QFrame.Shadow.Sunken)
         self.setLineWidth(1)
         self.setStyleSheet("background-color: #f0f0f0;")
+        self.setFixedSize(QSize(100, 100))
 
         self.setAcceptDrops(True)
 
@@ -51,6 +54,9 @@ class DbApp(QWidget):
 
         self.label_name = QLabel("title")
         self.label_authors = QLabel("authors")
+
+        from WebView import WebView
+        layout.addWidget(WebView(self))
 
         layout.addWidget(self.label_name)
         layout.addWidget(self.title_edit)
