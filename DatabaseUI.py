@@ -39,7 +39,7 @@ class DropArea(QFrame):
         if is_pdf(file_path):
             self.parent().set_document(file_path)
 
-class DbApp(QWidget):
+class Database_row_widget(QWidget):
     def __init__(self, parent = None):
         super().__init__(parent)
         self.setAcceptDrops(True)  # to accept drop events
@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
         from WebView import WebView
         layout.addWidget(WebView(self))
 
-        layout.addWidget(DbApp(self))
+        layout.addWidget(Database_row_widget(self))
 
         self.setCentralWidget(centralWidget)
 
