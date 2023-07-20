@@ -58,10 +58,11 @@ class DbApp(QWidget):
         from WebView import WebView
         layout.addWidget(WebView(self))
 
-        layout.addWidget(self.label_name)
-        layout.addWidget(self.title_edit)
         layout.addWidget(self.label_authors)
         layout.addWidget(self.authors_edit)
+
+        layout.addWidget(self.label_name)
+        layout.addWidget(self.title_edit)
 
         self.drop_area = DropArea(self)
         layout.addWidget(self.drop_area)
@@ -88,6 +89,10 @@ class DbApp(QWidget):
             authors=self.authors_edit.text(),
             document=document_binary
         ))
+
+        self.title_edit.setText(None)
+        self.authors_edit.setText(None)
+        self.document_path = None
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
