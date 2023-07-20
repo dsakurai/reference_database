@@ -98,6 +98,7 @@ class MainWindow(QMainWindow):
     def init_ui(self):
 
         centralWidget = QFrame(self)
+        self.setCentralWidget(centralWidget)
 
         layout = QHBoxLayout()
         centralWidget.setLayout(layout)
@@ -107,7 +108,6 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(Database_row_widget(self))
 
-        self.setCentralWidget(centralWidget)
 
 
 if __name__ == '__main__':
