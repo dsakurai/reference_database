@@ -52,16 +52,13 @@ class DbApp(QWidget):
         self.title_edit = QLineEdit()
         self.authors_edit = QLineEdit()
 
-        self.label_name = QLabel("title")
-        self.label_authors = QLabel("authors")
-
         from WebView import WebView
         layout.addWidget(WebView(self))
 
-        layout.addWidget(self.label_authors)
+        layout.addWidget(QLabel("authors", self))
         layout.addWidget(self.authors_edit)
 
-        layout.addWidget(self.label_name)
+        layout.addWidget(QLabel("title", self))
         layout.addWidget(self.title_edit)
 
         self.drop_area = DropArea(self)
