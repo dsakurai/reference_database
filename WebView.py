@@ -4,7 +4,6 @@ from PyQt6.QtWidgets import QSizePolicy
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest, QWebEngineSettings
 import os
-os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-pdf-extension"
 
 class WebView(QWebEngineView):
     def __init__(self, parent = None):
