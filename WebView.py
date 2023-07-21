@@ -3,7 +3,6 @@ from PyQt6.QtCore import QUrl, QStandardPaths
 from PyQt6.QtWidgets import QSizePolicy
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineDownloadRequest, QWebEngineSettings
-import appdirs
 import os
 os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-pdf-extension"
 
